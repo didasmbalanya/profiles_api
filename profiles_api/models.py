@@ -23,7 +23,7 @@ class UserProfileManager(BaseUserManager):
         """create a new super user with the above details"""
         user = self.create_user(email, name, password)
         user.is_superuser = True
-        user.is_stuff = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
