@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
 from . import models
@@ -11,6 +12,9 @@ class HelloSerializer(serializers.Serializer):
 
 class UserProfileSerialzer(serializers.ModelSerializer):
     """Serializes a user profile object"""
+
+    def validate_password(self, value: str) -> str:
+        return make_password(value)
 
     class Meta:
         model = models.UserProfile
